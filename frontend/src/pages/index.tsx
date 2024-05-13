@@ -1,17 +1,40 @@
-import { useCountriesQuery } from "@/graphql/generated/schema";
+import { useCountriesQuery, useAddCountryMutation, CountriesDocument } from "@/graphql/generated/schema";
 import CountryCard from "@/components/countryCard";
-import Header from "@/components/Header";
 
 export default function Home() {
-  const { data, loading, error } = useCountriesQuery();
-
+  const { data, refetch, loading, error } = useCountriesQuery();
   const countries = data?.countries;
+
+  const [addCountry] = useAddCountryMutation();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const formJSON: any = Object.fromEntries(formData.entries());
+    const res = await addCountry({ variables: { data: { ...formJSON } } });
+    window.location.reload();
+  };
 
   console.log(countries);
 
   return (
     <>
-      <Header />
+      <div className="add-form-container">
+        <form onSubmit={handleSubmit} className="add-form">
+          <label>
+            Name
+            <input type="text" name="name" />
+          </label>
+          <label>
+            Emoji
+            <input type="text" name="emoji" />
+          </label>
+          <label>
+            Code
+            <input type="text" name="code" />
+          </label>
+          <button type="submit">Add</button>
+        </form>
+      </div>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       <div className="cards-container">

@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useCountryQuery } from "../../graphql/generated/schema";
-import Header from "@/components/Header";
 
 export default function Country() {
   const router = useRouter();
@@ -16,7 +15,6 @@ export default function Country() {
 
   return (
     <>
-      <Header />
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {country && (

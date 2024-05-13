@@ -54,6 +54,35 @@ a {
   }
 }
 
+.add-form-container {
+  margin: 0 auto; /* Centre le formulaire horizontalement */
+  width: fit-content; /* Ajuste la largeur du conteneur à la taille de son contenu */
+  margin-left: 2rem; /* Marge à gauche */
+  margin-right: 2rem; /* Marge à droite */
+}
+
+.add-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid rgb(216, 209, 209);
+  border-radius: 0.5rem;
+}
+
+.add-form input {
+  width: 10rem;
+}
+.add-form button {
+  width: 3rem;
+  height: 3rem;
+  background-color: #ff0088;
+  color: white;
+  border-radius: 0.5rem;
+  border: none;
+  margin: 1rem;
+}
+
 .header {
   display: flex;
   justify-content: center;
